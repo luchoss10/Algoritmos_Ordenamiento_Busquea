@@ -1,8 +1,5 @@
 """Programa de metodos de ordenamiento"""
 
-
-
-
 import random, sys, time
 
 #Funcion  generar Vector
@@ -34,12 +31,18 @@ def OrBurbuja(lista):
     tiempo_burb_final = time.time()
     return lista 
 
-N =  int(input("Ingrese un tamaño para el vector: "))
+
+
+print("Prgrama de  metodos de Ordenamiento y Busqueda")
+print("Seleccione el metodo de ordenamiento o bsuqueda")
+
+
+n =  int(input("Ingrese un tamaño para el vector: "))
 tiempo_burb_inicio = 0
 tiempo_burb_final = 0
-vec=NVector(N)
+vec=NVector(n)
 #print(f"El vector es: {vec}")
 #print(f"Acomodado es: {OrBurbuja(vec)}") 
 vec=OrBurbuja(vec)
 
-print(f"Para un vector de tamaño {N}, el algoritmo se demoro: {tiempo_burb_final-tiempo_burb_inicio} ")
+print(f"Para un vector de tamaño {n}, el algoritmo se demoro: {tiempo_burb_final-tiempo_burb_inicio} ")
