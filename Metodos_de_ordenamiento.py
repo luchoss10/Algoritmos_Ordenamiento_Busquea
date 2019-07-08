@@ -54,19 +54,60 @@ def OrdQuickSort(lista):
 
     return OrdQuickSort(izquierda) + medio + OrdQuickSort(derecha)
 
+def BusSecuen(lista, eval):
+    n=0
+    while n < len(lista):
+        if eval == lista[n]:
+            return n
+        n += 1
+    
+    return -1
+
+def BusBinaria(lista, eval):
+    inf = 0
+    sup = len(lista) - 1
+    while inf <= sup:
+        mit =  inf+sup//2
+        if lista[mit] == eval:
+            return mit
+        elif eval < lista[mit]:
+            sup = mit - 1
+        else:
+            inf = mit + 1
+    
+    return -1
 
 print("Programa de  metodos de Ordenamiento y Busqueda")
 print("Seleccione el metodo de ordenamiento o bsuqueda")
 
 
-n =  int(input("Ingrese un tamaño para el vector: "))
+#n =  int(input("Ingrese un tamaño para el vector: "))
 tiempo_inicio = 0
 tiempo_final = 0
-vec=NVector(n)
+#vec=NVector(n)
 #print(f"El vector es: {vec}")
 #print(f"Acomodado es: {OrdBurbuja(vec)}") 
 #vec=OrdBurbuja(vec)
-vecOrd =  OrdQuickSort(vec)
-tiempo_final = time.time()
+#vecOrd =  OrdQuickSort(vec)
+#tiempo_final = time.time()
 #print(vecOrd)
-print(f"Para un vector de tamaño {n}, el algoritmo se demoro: {tiempo_final-tiempo_inicio} ")
+#print(f"Para un vector de tamaño {n}, el algoritmo se demoro: {tiempo_final-tiempo_inicio} ")
+
+
+arreglo_1 = [0,5,7,8,4,6,9,10,11,2,3,1,20]
+arreglo_2 = [15,17,18,19,20,35,1085,71,23,54]
+ar = OrdQuickSort(arreglo_2)
+#           [0 1 2 3 4 5 6  7  8 9 10 11 12]
+i = int(input("Ingrese el elemento a buscar: "))
+#valor = BusSecuen(arreglo, i) 
+valor = BusBinaria(ar, i)
+print(arreglo_2)
+print(ar)
+
+
+if valor >= 0:
+    print(F"El elemento: {i} se encuentra en la posicion {valor}")
+else:
+    print(F"El elemento: {i} no se encuentra en la lista")
+    
+
