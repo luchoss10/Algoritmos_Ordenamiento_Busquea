@@ -1,4 +1,4 @@
-"""Programa de metodos de ordenamiento"""
+"""Programa De Metodos De Ordenamiento"""
 
 import random, sys, time
 
@@ -34,7 +34,7 @@ def OrdBurbuja(lista):
 def OrdQuickSort(lista):
     global tiempo_final, tiempo_inicio
     tiempo_inicio = time.time()
-    
+
     if len(lista) <= 1:
         return lista
     
