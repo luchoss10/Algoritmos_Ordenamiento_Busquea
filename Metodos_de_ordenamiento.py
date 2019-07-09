@@ -31,6 +31,15 @@ def OrdBurbuja(lista):
     tiempo_final = time.time()
     return lista 
 
+def OrdInserc(A):
+    for i in range(len(A)):
+        for j in range(i,0,-1):
+            if(A[j-1] > A[j]):
+                aux=A[j]
+                A[j]=A[j-1]
+                A[j-1]=aux
+    print(A)
+
 def OrdQuickSort(lista):
     global tiempo_final, tiempo_inicio
     tiempo_inicio = time.time()
@@ -81,10 +90,12 @@ print("Programa de  metodos de Ordenamiento y Busqueda")
 print("Seleccione el metodo de ordenamiento o bsuqueda")
 
 
-#n =  int(input("Ingrese un tamaño para el vector: "))
+n =  int(input("Ingrese un tamaño para el vector: "))
 tiempo_inicio = 0
 tiempo_final = 0
-#vec=NVector(n)
+vec=NVector(n)
+OrdInserc(vec)
+
 #print(f"El vector es: {vec}")
 #print(f"Acomodado es: {OrdBurbuja(vec)}") 
 #vec=OrdBurbuja(vec)
@@ -96,18 +107,18 @@ tiempo_final = 0
 
 arreglo_1 = [0,5,7,8,4,6,9,10,11,2,3,1,20]
 arreglo_2 = [15,17,18,19,20,35,1085,71,23,54]
-ar = OrdQuickSort(arreglo_2)
+#ar = OrdQuickSort(arreglo_2)
 #           [0 1 2 3 4 5 6  7  8 9 10 11 12]
-i = int(input("Ingrese el elemento a buscar: "))
+#i = int(input("Ingrese el elemento a buscar: "))
 #valor = BusSecuen(arreglo, i) 
-valor = BusBinaria(ar, i)
-print(arreglo_2)
-print(ar)
+#valor = BusBinaria(ar, i)
+#print(arreglo_2)
+#print(ar)
 
 
-if valor >= 0:
-    print(F"El elemento: {i} se encuentra en la posicion {valor}")
-else:
-    print(F"El elemento: {i} no se encuentra en la lista")
+# if valor >= 0:
+#     print(F"El elemento: {i} se encuentra en la posicion {valor}")
+# else:
+#     print(F"El elemento: {i} no se encuentra en la lista")
     
 
