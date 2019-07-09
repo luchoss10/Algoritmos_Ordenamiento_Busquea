@@ -31,6 +31,7 @@ def OrdBurbuja(lista):
     tiempo_final = time.time()
     return lista 
 
+#Ordenamiento Por Insercion
 def OrdInserc(A):
     for i in range(len(A)):
         for j in range(i,0,-1):
@@ -40,13 +41,14 @@ def OrdInserc(A):
                 A[j-1]=aux
     print(A)
 
+#Ordenamiento QuickSort
 def OrdQuickSort(lista):
     global tiempo_final, tiempo_inicio
     tiempo_inicio = time.time()
     
     if len(lista) <= 1:
         return lista
-    
+        
     derecha = []
     izquierda = []
     medio = []
