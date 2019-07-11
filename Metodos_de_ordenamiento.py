@@ -18,35 +18,40 @@ def NVector(n):
 #Ordeamiento Burbuja
 def OrdBurbuja(lista):
     #Se referncia las variables globales para sobreescribir
-    global tiempo_inicio_burb, tiempo_final_burb
+    global tiempo_inicio, tiempo_final, nCamb, nComp
     #Se toma el tiempo al iniciar el algoritmo de ordenamento
-    tiempo_inicio_burb = time.time()
+    tiempo_inicio = time.time()
     for i  in range(1,len(lista)):
-        for j in range(0,len(lista)-+i):
+        for j in range(0,len(lista)-i):
+            nComp += 1
             if lista[j+1]<lista[j]:
                 aux = lista[j]
                 lista[j] = lista[j+1]
                 lista[j+1] = aux
+                nCamb += 1
     #Se toma el tiempo una vez termino el algoritmo
-    tiempo_final_burb = time.time()
+    tiempo_final = time.time()
     return lista 
 
 #Ordenamiento Por Insercion
 def OrdInserc(lista):
-    global tiempo_inicio_Inser, tiempo_final_Inser
-    tiempo_inicio_Inser = time.time()
+    global tiempo_inicio, tiempo_final, nCamb, nComp
+    tiempo_inicio = time.time()
     for i in range(len(lista)):
         for j in range(i,0,-1):
+            nComp += 1
             if(lista[j-1] > lista[j]):
                 aux=lista[j]
                 lista[j]=lista[j-1]
                 lista[j-1]=aux
-    tiempo_final_Inser = time.time()
+                nCamb += 1
+    tiempo_final = time.time()
     return lista
 
 #Ordenamiento QuickSort1
 def OrdQuickSort(lista):
-    
+    global nCamb, nComp
+    nComp += 1
     if len(lista) <= 1:
         return lista
         
@@ -59,9 +64,10 @@ def OrdQuickSort(lista):
     for i  in range(1,len(lista)):
         if lista[i] < pivote:
             izquierda.append(lista[i])
-            
+            nCamb += 1
         else:
             derecha.append(lista[i])
+            nCamb += 1
 
     return OrdQuickSort(izquierda) + medio + OrdQuickSort(derecha)
 
@@ -96,50 +102,58 @@ def imprResultado(valor, elemento):
          print(F"El elemento: {elemento} se encuentra en la posicion {valor}")
     else:
          print(F"El elemento: {elemento} no se encuentra en la lista")
+
+def imprComCam(cam, com):
+    print(f"El numero de comparaciones fue : {com} y el numero de cambios fue : {cam} ")
+
+# def main():
+#sys.setrecursionlimit(15000)
+print("Programa de  metodos de Ordenamiento y Busqueda")
+n =  int(input("Ingrese un tamaño para el vector: "))
+vec=NVector(n)
+print("Seleccione el metodo de ordenamiento o bsuqueda")
+o = int(input("1 - Burbuja \n2 - Inserción \n3 - Quick Sort \nselección : "))
     
-def main():
-    #sys.setrecursionlimit(15000)
-    print("Programa de  metodos de Ordenamiento y Busqueda")
-    n =  int(input("Ingrese un tamaño para el vector: "))
-    vec=NVector(n)
-    print("Seleccione el metodo de ordenamiento o bsuqueda")
-    o = int(input("1 - Burbuja \n2 - Inserción \n3 - Quick Sort \nselección : "))
-        
-    tiempo_inicio_burb  = 0
-    tiempo_inicio_Inser = 0
-    tiempo_inicio_Quick = 0
-    tiempo_final_burb  = 0
-    tiempo_final_Inser = 0
-    tiempo_final_Quick = 0
-    vecOrd = []
+nCamb = 0
+nComp = 0
 
-    if o == 1:
-        print(f"Para un vector de tamaño {n}, el algoritmo de burbuja se demoro: {tiempo_final_burb-tiempo_inicio_burb} ")
-    elif o == 2:
-        print(f"Para un vector de tamaño {n}, el algoritmo de inserción se demoro: {tiempo_final_Inser-tiempo_inicio_Inser} ")
-    elif o == 3:
-        tiempo_inicio_Quick = time.time()
-        vecOrd = OrdQuickSort(vec)
-        tiempo_final_Quick =  time.time()
-        print(f"Para un vector de tamaño {n}, el algoritmo QuickSort se demoro: {tiempo_final_Quick-tiempo_inicio_Quick} ")
-    else : 
-        print("Seleccion Incorrecta Selecciona 1, 2 o 3")
-        sys.exit(True)
-
-    print("Seleccione el tipo de busqueda para un elemento")
-    b = int(input("1 - Busqueda Secuencial \n2 - Buesqueda Binaria \nselección : "))
-
-    if b == 1:
-        val = int(input("Ingresa el valor a buscar en el vector: "))
-        imprResultado(BusSecuen(vecOrd, val), val)
-    elif b == 2:
-        val = int(input("Ingresa el valor a buscar en el vector: "))
-        imprResultado(BusBinaria(vecOrd, val), val)
-    else:
-        print("Seleccion Incorrecta Selecciona 1 o 2")
-        sys.exit(True)
+tiempo_inicio  = 0
+tiempo_final = 0
+vecOrd = []
 
 
-if __name__ == "__main__":
-    main()
+if o == 1:
+    vecOrd =OrdBurbuja(vec)
+    print(f"Para un vector de tamaño {n}, el algoritmo de burbuja se demoro: {tiempo_final-tiempo_inicio} ")
+    imprComCam(nCamb, nComp)
+elif o == 2:
+    vecOrd = OrdInserc(vec)
+    print(f"Para un vector de tamaño {n}, el algoritmo de inserción se demoro: {tiempo_final-tiempo_inicio} ")
+    imprComCam(nCamb, nComp)
+elif o == 3:
+    tiempo_inicio = time.time()
+    vecOrd = OrdQuickSort(vec)
+    tiempo_final =  time.time()
+    print(f"Para un vector de tamaño {n}, el algoritmo QuickSort se demoro: {tiempo_final-tiempo_inicio} ")
+    imprComCam(nCamb, nComp)
+else : 
+    print("Seleccion Incorrecta Selecciona 1, 2 o 3")
+    sys.exit(True)
+
+print("Seleccione el tipo de busqueda para un elemento")
+b = int(input("1 - Busqueda Secuencial \n2 - Buesqueda Binaria \nselección : "))
+
+if b == 1:
+    val = int(input("Ingresa el valor a buscar en el vector: "))
+    imprResultado(BusSecuen(vecOrd, val), val)
+elif b == 2:
+    val = int(input("Ingresa el valor a buscar en el vector: "))
+    imprResultado(BusBinaria(vecOrd, val), val)
+else:
+    print("Seleccion Incorrecta Selecciona 1 o 2")
+    sys.exit(True)
+
+
+# if __name__ == "__main__":
+#     main()
 
