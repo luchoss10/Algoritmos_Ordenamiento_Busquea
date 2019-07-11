@@ -51,8 +51,9 @@ def OrdInserc(lista):
 #Ordenamiento QuickSort1
 def OrdQuickSort(lista):
     global nCamb, nComp
-    nComp += 1
+    
     if len(lista) <= 1:
+        nComp += 1
         return lista
         
     derecha = []
@@ -62,13 +63,15 @@ def OrdQuickSort(lista):
     medio.append(pivote)
 
     for i  in range(1,len(lista)):
+        nComp += 1
         if lista[i] < pivote:
             izquierda.append(lista[i])
-            nCamb += 1
+            #nCamb += 1
         else:
             derecha.append(lista[i])
-            nCamb += 1
+            #nCamb += 1
 
+    nCamb += 1
     return OrdQuickSort(izquierda) + medio + OrdQuickSort(derecha)
 
 #Busqueda Secuencial
