@@ -37,3 +37,8 @@ print (lista, "\n")
 print ("Tiempo: {0:f} segundos".format(t1 - t0))
 print ("Comparaciones:", comparaciones)
  
+ # for i in range(0,100):
+#     vec=NVector(n)
+#     vecOrd = OrdInserc(vec)
+#     print(f"{nComp},{nCamb},{tiempo_final-tiempo_inicio}")
+#     nComp = 0; nCamb = 0
