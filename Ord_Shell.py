@@ -20,3 +20,6 @@ def OrdShell(lista):
                 j = j-t
             lista[j+t] = x
     print(lista)
+
+
+

@@ -66,12 +66,11 @@ def OrdQuickSort(lista):
         nComp += 1
         if lista[i] < pivote:
             izquierda.append(lista[i])
-            #nCamb += 1
+            nCamb += 1
         else:
             derecha.append(lista[i])
-            #nCamb += 1
+            nCamb += 1
 
-    nCamb += 1
     return OrdQuickSort(izquierda) + medio + OrdQuickSort(derecha)
 
 #Busqueda Secuencial
@@ -113,9 +112,9 @@ def imprComCam(cam, com):
 #sys.setrecursionlimit(15000)
 print("Programa de  metodos de Ordenamiento y Busqueda")
 n =  int(input("Ingrese un tamaño para el vector: "))
-vec=NVector(n)
-print("Seleccione el metodo de ordenamiento o bsuqueda")
-o = int(input("1 - Burbuja \n2 - Inserción \n3 - Quick Sort \nselección : "))
+#vec=NVector(n)
+#print("Seleccione el metodo de ordenamiento o bsuqueda")
+#o = int(input("1 - Burbuja \n2 - Inserción \n3 - Quick Sort \nselección : "))
     
 nCamb = 0
 nComp = 0
@@ -124,37 +123,44 @@ tiempo_inicio  = 0
 tiempo_final = 0
 vecOrd = []
 
-
-if o == 1:
-    vecOrd =OrdBurbuja(vec)
-    print(f"Para un vector de tamaño {n}, el algoritmo de burbuja se demoro: {tiempo_final-tiempo_inicio} ")
-    imprComCam(nCamb, nComp)
-elif o == 2:
-    vecOrd = OrdInserc(vec)
-    print(f"Para un vector de tamaño {n}, el algoritmo de inserción se demoro: {tiempo_final-tiempo_inicio} ")
-    imprComCam(nCamb, nComp)
-elif o == 3:
-    tiempo_inicio = time.time()
+for i in range(0,100):
+    vec=NVector(n)
+    tiempo_inicio =  time.time()
     vecOrd = OrdQuickSort(vec)
     tiempo_final =  time.time()
-    print(f"Para un vector de tamaño {n}, el algoritmo QuickSort se demoro: {tiempo_final-tiempo_inicio} ")
-    imprComCam(nCamb, nComp)
-else : 
-    print("Seleccion Incorrecta Selecciona 1, 2 o 3")
-    sys.exit(True)
+    print(f"{nComp},{nCamb},{tiempo_final-tiempo_inicio}")
+    nComp = 0; nCamb = 0
 
-print("Seleccione el tipo de busqueda para un elemento")
-b = int(input("1 - Busqueda Secuencial \n2 - Buesqueda Binaria \nselección : "))
+# if o == 1:
+#     vecOrd =OrdBurbuja(vec)
+#     print(f"Para un vector de tamaño {n}, el algoritmo de burbuja se demoro: {tiempo_final-tiempo_inicio} ")
+#     imprComCaPm(nCamb, nComp)
+# elif o == 2:
+#     vecOrd = OrdInserc(vec)
+#     print(f"Para un vector de tamaño {n}, el algoritmo de inserción se demoro: {tiempo_final-tiempo_inicio} ")
+#     imprComCam(nCamb, nComp)
+# elif o == 3:
+#     tiempo_inicio = time.time()
+#     vecOrd = OrdQuickSort(vec)
+#     tiempo_final =  time.time()
+#     print(f"Para un vector de tamaño {n}, el algoritmo QuickSort se demoro: {tiempo_final-tiempo_inicio} ")
+#     imprComCam(nCamb, nComp)
+# else : 
+#     print("Seleccion Incorrecta Selecciona 1, 2 o 3")
+#     sys.exit(True)
 
-if b == 1:
-    val = int(input("Ingresa el valor a buscar en el vector: "))
-    imprResultado(BusSecuen(vecOrd, val), val)
-elif b == 2:
-    val = int(input("Ingresa el valor a buscar en el vector: "))
-    imprResultado(BusBinaria(vecOrd, val), val)
-else:
-    print("Seleccion Incorrecta Selecciona 1 o 2")
-    sys.exit(True)
+# print("Seleccione el tipo de busqueda para un elemento")
+# b = int(input("1 - Busqueda Secuencial \n2 - Buesqueda Binaria \nselección : "))
+
+# if b == 1:
+#     val = int(input("Ingresa el valor a buscar en el vector: "))
+#     imprResultado(BusSecuen(vecOrd, val), val)
+# elif b == 2:
+#     val = int(input("Ingresa el valor a buscar en el vector: "))
+#     imprResultado(BusBinaria(vecOrd, val), val)
+# else:
+#     print("Seleccion Incorrecta Selecciona 1 o 2")
+#     sys.exit(True)
 
 
 # if __name__ == "__main__":
