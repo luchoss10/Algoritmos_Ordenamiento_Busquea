@@ -15,6 +15,7 @@ def NVector(n):
         print("¡No se puede crear un vector de tamaño negativo o 0!")
         sys.exit(True)
 
+
 #Ordeamiento Burbuja
 def OrdBurbuja(lista):
     #Se referncia las variables globales para sobreescribir
@@ -45,6 +46,29 @@ def OrdInserc(lista):
                 lista[j]=lista[j-1]
                 lista[j-1]=aux
                 nCamb += 1
+    tiempo_final = time.time()
+    return lista
+
+#Ordenamiento Shell
+def OrdShell(lista):
+
+    global tiempo_inicio, tiempo_final, nCamb, nComp
+    tiempo_inicio = time.time()
+    inter = len(lista)//2
+
+    while inter > 0:
+        for i in range(inter, len(lista)):
+            temp = lista[i]
+            j = i
+            nComp += 1
+            while j>=inter and lista[j-inter] > temp:
+                lista[j] = lista[j-inter]
+                j-= inter
+                nCamb +=1
+
+            lista[j] = temp
+        inter //= 2
+
     tiempo_final = time.time()
     return lista
 
@@ -114,7 +138,7 @@ print("Programa de  metodos de Ordenamiento y Busqueda")
 n =  int(input("Ingrese un tamaño para el vector: "))
 vec=NVector(n)
 print("Seleccione el metodo de ordenamiento o bsuqueda")
-o = int(input("1 - Burbuja \n2 - Inserción \n3 - Quick Sort \nselección : "))
+o = int(input("1 - Burbuja \n2 - Inserción \n3- Shell Sort  \n4- Quick Sort \nselección : "))
     
 nCamb = 0
 nComp = 0
@@ -122,8 +146,6 @@ nComp = 0
 tiempo_inicio  = 0
 tiempo_final = 0
 vecOrd = []
-
-
 
 if o == 1:
     vecOrd =OrdBurbuja(vec)
@@ -134,6 +156,10 @@ elif o == 2:
     print(f"Para un vector de tamaño {n}, el algoritmo de inserción se demoro: {tiempo_final-tiempo_inicio} ")
     imprComCam(nCamb, nComp)
 elif o == 3:
+    vecOrd =OrdShell(vec)
+    print(f"Para un vector de tamaño {n}, el algoritmo shell se demoro: {tiempo_final-tiempo_inicio} ")
+    imprComCam(nCamb, nComp)
+elif o==4:
     tiempo_inicio = time.time()
     vecOrd = OrdQuickSort(vec)
     tiempo_final =  time.time()
