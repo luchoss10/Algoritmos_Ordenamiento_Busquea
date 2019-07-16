@@ -38,14 +38,15 @@ def OrdBurbuja(lista):
 def OrdInserc(lista):
     global tiempo_inicio, tiempo_final, nCamb, nComp
     tiempo_inicio = time.time()
+    
     for i in range(len(lista)):
-        for j in range(i,0,-1):
+        for j in range(i-1,-1,-1):
             nComp += 1
-            if(lista[j-1] > lista[j]):
-                aux=lista[j]
-                lista[j]=lista[j-1]
-                lista[j-1]=aux
+            if(lista[j] > lista[j+1]):
+                lista[j], lista[j+1] = lista[j+1], lista[j]
                 nCamb += 1
+            else:
+                break
     tiempo_final = time.time()
     return lista
 
@@ -147,6 +148,7 @@ tiempo_inicio  = 0
 tiempo_final = 0
 vecOrd = []
 
+
 if o == 1:
     vecOrd =OrdBurbuja(vec)
     print(f"Para un vector de tamaño {n}, el algoritmo de burbuja se demoro: {tiempo_final-tiempo_inicio} ")
@@ -181,7 +183,6 @@ elif b == 2:
 else:
     print("Seleccion Incorrecta Selecciona 1 o 2")
     sys.exit(True)
-
 
 # if __name__ == "__main__":
 #     main()
