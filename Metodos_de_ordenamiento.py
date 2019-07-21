@@ -119,8 +119,7 @@ def BusBinaria(lista, eval):
         elif eval < lista[mit]:
             sup = mit - 1
         else:
-            inf = mit + 1
-    
+            inf = mit + 1    
     return -1
 
 #Metodo para Imprimir Resultado De Busqueda
